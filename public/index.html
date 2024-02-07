@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send A Case | Creation Dental Lab, Inc</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    
+    <div class="body-content"> <!-- Wrap all content except footer -->
+      
+        <section class="content-section">
+            <div class="description">
+                <h2>About the Submission Process</h2>
+                <p>Creation Dental Lab provides an easy and secure way for dental professionals to submit their digital dental case files directly. Please fill in your details, attach your PDF RX form, and Dental Case File in .stl format, then click submit. Our team will take care of the rest, ensuring a smooth and efficient process.</p>
+                <div id="submissionMessage" class="submission-message" style="display: none;">
+                    <p>Thank you! Your form has been submitted successfully.</p>
+                </div>
+            </div>
+            
+            <div class="upload-form-container">
+                <h2>Dental Case Submission Form</h2>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="form-field">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required />
+                    </div>
+                    <div class="form-field">
+                        <label for="pdfRxForm">PDF RX Form:</label>
+                        <input type="file" id="pdfRxForm" name="pdfRxForm" accept=".pdf" />
+                    </div>
+                    <div class="form-field">
+                        <label for="stlFile">STL Dental Case File:</label>
+                        <input type="file" id="stlFile" name="stlFile" accept=".stl" />
+                    </div>
+                    <div class="form-field">
+                        <label for="note">Note:</label>
+                        <textarea id="note" name="note" placeholder="Feel free to leave an optional note about anything you would like us to know." rows="6" cols="50"></textarea>
+                    </div>                                    
+                    <div class="button-container">
+                        <button type="submit" id="uploadButton">Submit</button>
+                        <!-- Loading spinner placeholder -->
+                        <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+      
+    <script src="uploadScript.js"></script>
+</body>
+</html>

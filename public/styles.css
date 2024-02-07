@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box; /* Include padding and border in an element's total width and height */
+}
+
+html, body {
+    height: 100%; /* Full height */
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+.body-content { /* Container for content */
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.content-section {
+    display: flex;
+    background-color: #000000; /* Set the background of the form container to white */
+    color: #ffffff;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 100px 10%;
+}
+
+.description {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.upload-form-container {
+    flex: 1;
+    background-color: #fff; /* Set the background of the form container to white */
+    color: #000; /* Set the text color inside the form container to black */
+    padding: 48px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-field {
+    margin-bottom: 10px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field input[type="file"] {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for textarea */
+textarea#note {
+    width: 95%; /* Makes the textarea occupy the full width of its parent container */
+    height: 150px; /* Set the height you prefer */
+    padding: 10px; /* Adds some space inside the textarea */
+    border: 1px solid #ccc; /* Adds a border to the textarea */
+    border-radius: 4px; /* Optional: Rounds the corners of the textarea */
+    box-sizing: border-box; /* Makes sure padding does not affect the overall width */
+}
+
+/* Style for placeholder text */
+textarea#note::placeholder {
+    color: rgba(0, 0, 0, 0.6); /* Sets the color and transparency of the placeholder text */
+    font-style: italic; /* Optional: Makes the placeholder text italic */
+}
+
+
+#uploadButton {
+    background-color: #007BFF; /* Set the background color of the button to blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#uploadButton:hover {
+    background-color: #0056b3; /* Darken the button on hover */
+}
+
+.description h2 {
+    font-family: 'Playfair Display', serif; /* Apply Playfair Display font */
+    font-size: 24px; /* Adjust the size as needed */
+    color: #fff; /* White color */
+    margin-bottom: 30px; /* Space between the heading and paragraph */
+}
+
+.description p {
+    font-family: 'Raleway', sans-serif; /* Ensure the paragraph uses Raleway */
+    font-size: 18px; /* Adjust the size as needed */
+    color: #fff; /* White color */
+}
+
+.site-footer {
+    width: 100%; /* Full width */
+    background-color: #ffffff;
+    color: #000;
+    text-align: center;
+    padding: 20px 0;
+    /* Add this if you want the footer at the bottom of the page */
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+}
+@media (max-width: 768px) {
+    .content-section {
+        flex-direction: column;
+        align-items: center; /* Center align items for smaller screens */
+        padding: 50px 10%; /* Adjust padding as needed */
+    }
+
+    .description,
+    .upload-form-container {
+        width: 100%; /* Full width on small screens */
+        max-width: 500px; /* You can set a max-width if you don't want it to stretch too wide on larger mobile devices */
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+    
+    .description {
+        padding-bottom: 20px; /* Add some space between the description and the form */
+    }
+
+    .form-field label,
+    .form-field input,
+    .form-field textarea {
+        font-size: 0.8em; /* Reduced font size */
+    }
+}
+
+.button-container {
+    position: relative;
+}
+
+#uploadButton {
+    /* Your existing styles */
+    position: relative;
+    z-index: 2; /* Ensures the button text is above the spinner */
+}
+
+.spinner {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #007BFF;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
