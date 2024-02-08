@@ -114,7 +114,7 @@ app.post('/upload', upload.fields([{ name: 'pdfRxForm', maxCount: 100 }, { name:
             await uploadFiles([{ path: noteFilePath, originalname: noteFileName }], 'text/plain', folderId);
         }
 
-        res.json({ success: true, message: 'Files and note uploaded successfully', folderId: folderId });
+        res.json({ success: true, message: 'Files and note uploaded successfully'});
     } catch (err) {
         console.error('Error:', err);
         res.status(500).json({ success: false, error: 'Failed to upload files to Google Drive' });

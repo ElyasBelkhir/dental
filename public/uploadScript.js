@@ -24,7 +24,7 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
     })
     .then(data => {
         if (data.success) {
-            console.log('File uploaded successfully:', data);
+            console.log('File uploaded successfully:');
             // Hide the form
             document.querySelector('.upload-form-container').style.display = 'none';
             
