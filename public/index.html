@@ -19,6 +19,7 @@
                 <p>Creation Dental Lab provides an easy and secure way for dental professionals to submit their digital dental case files directly. Please fill in your details, attach your PDF RX form, and Dental Case File in .stl format, then click submit. Our team will take care of the rest, ensuring a smooth and efficient process.</p>
                 <div id="submissionMessage" class="submission-message" style="display: none;">
                     <p>Thank you! Your form has been submitted successfully.</p>
+                    <button type="button" id="submitNewCaseButton">Submit New Case</button>
                 </div>
             </div>
             
@@ -34,16 +35,16 @@
                         <input type="email" id="email" name="email" required />
                     </div>
                     <div class="form-field">
-                        <label for="pdfRxForm">PDF RX Form:</label>
-                        <input type="file" id="pdfRxForm" name="pdfRxForm" accept=".pdf" />
+                        <label for="pdfRxForm">RX Forms:</label>
+                        <input type="file" id="pdfRxForm" name="pdfRxForm" accept=".pdf" multiple />
                     </div>
                     <div class="form-field">
-                        <label for="stlFile">STL Dental Case File:</label>
-                        <input type="file" id="stlFile" name="stlFile" accept=".stl" />
+                        <label for="stlFile">Dental Case Files:</label>
+                        <input type="file" id="stlFile" name="stlFile" accept=".stl" multiple />
                     </div>
                     <div class="form-field">
                         <label for="note">Note:</label>
-                        <textarea id="note" name="note" placeholder="Feel free to leave an optional note about anything you would like us to know." rows="6" cols="50"></textarea>
+                        <textarea id="note" name="note" placeholder="Feel free to leave an optional note with anything you would like us to know." rows="6" cols="50"></textarea>
                     </div>                                    
                     <div class="button-container">
                         <button type="submit" id="uploadButton">Submit</button>

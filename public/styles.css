@@ -168,3 +168,19 @@ textarea#note::placeholder {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
+
+#submitNewCaseButton {
+    background-color: #007BFF; /* Set the background color of the button to green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px; /* Add some space above the button */
+    display: none; /* Initially hidden */
+}
+
+#submitNewCaseButton:hover {
+    background-color: #0056b3; /* Darken the button on hover */
+}

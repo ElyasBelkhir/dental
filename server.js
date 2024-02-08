@@ -40,7 +40,7 @@ const auth = new google.auth.GoogleAuth({
 });
 const drive = google.drive({ version: 'v3', auth });
 
-app.post('/upload', upload.fields([{ name: 'pdfRxForm', maxCount: 1 }, { name: 'stlFile', maxCount: 1 }]), async (req, res) => {
+app.post('/upload', upload.fields([{ name: 'pdfRxForm', maxCount: 100 }, { name: 'stlFile', maxCount: 100 }]), async (req, res) => {
     try {
         const { name, email, note } = req.body;
         if (!name || !email) {
@@ -62,39 +62,56 @@ app.post('/upload', upload.fields([{ name: 'pdfRxForm', maxCount: 1 }, { name: '
             fields: 'id'
         });
         const folderId = folder.data.id;
+        
+        const createSubfolder = async (name) => {
+            const subfolderMetadata = {
+                'name': name,
+                'mimeType': 'application/vnd.google-apps.folder',
+                'parents': [folderId]
+            };
+            const subfolder = await drive.files.create({
+                resource: subfolderMetadata,
+                fields: 'id'
+            });
+            return subfolder.data.id;
+        };
 
-        // Upload files to Google Drive
-        const uploadFile = async (file, mimeType) => {
-            if (file) {
-                const filePath = file.path;
-                const fileName = file.originalname;
-                const fileMetadata = {
-                    'name': fileName,
-                    'parents': [folderId]
-                };
-                const media = {
-                    mimeType: mimeType,
-                    body: fs.createReadStream(filePath)
-                };
-                await drive.files.create({
-                    resource: fileMetadata,
-                    media: media,
-                    fields: 'id'
-                });
-                // Remove file from local storage after upload
-                fs.unlinkSync(filePath);
+        const pdfFolderId = await createSubfolder('PDFs');
+        const stlFolderId = await createSubfolder('3DModels');
+        
+        const uploadFiles = async (files, mimeType, subfolderId) => {
+            if (files) {
+                for (const file of files) {
+                    const filePath = file.path;
+                    const fileName = file.originalname;
+                    const fileMetadata = {
+                        'name': fileName,
+                        'parents': [subfolderId]
+                    };
+                    const media = {
+                        mimeType: mimeType,
+                        body: fs.createReadStream(filePath)
+                    };
+                    await drive.files.create({
+                        resource: fileMetadata,
+                        media: media,
+                        fields: 'id'
+                    });
+                    // Remove file from local storage after upload
+                    fs.unlinkSync(filePath);
+                }
             }
         };
 
-        await uploadFile(req.files['pdfRxForm'] ? req.files['pdfRxForm'][0] : null, 'application/pdf');
-        await uploadFile(req.files['stlFile'] ? req.files['stlFile'][0] : null, 'model/stl');
+        await uploadFiles(req.files['pdfRxForm'], 'application/pdf', pdfFolderId);
+        await uploadFiles(req.files['stlFile'], 'model/stl', stlFolderId);
         
         // Handle note
         if (note) {
             const noteFileName = `Note-${name}-${formattedDate}.txt`;
-            const noteFilePath = path.join('/tmp/notes', noteFileName);
+            const noteFilePath = path.join(notesDir, noteFileName);
             fs.writeFileSync(noteFilePath, note);
-            await uploadFile({ path: noteFilePath, originalname: noteFileName }, 'text/plain');
+            await uploadFiles([{ path: noteFilePath, originalname: noteFileName }], 'text/plain', folderId);
         }
 
         res.json({ success: true, message: 'Files and note uploaded successfully', folderId: folderId });

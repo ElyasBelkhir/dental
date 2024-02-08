@@ -39,6 +39,9 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
             console.error('Error uploading file:', data.error);
             alert('Error uploading file: ' + data.error);
         }
+        // Inside the .then block after data.success check
+        document.getElementById('submitNewCaseButton').style.display = 'block'; // Display the "Submit New Case" button
+
     })
     .catch(error => {
         // Handle network errors or other fetch-related errors
@@ -51,4 +54,19 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
         button.innerText = 'Submit'; // Reset button text
         spinner.style.display = 'none'; // Hide spinner
     });
+});
+// After the existing form submission event listener
+
+document.getElementById('submitNewCaseButton').addEventListener('click', function() {
+    // Reset the form
+    document.getElementById('uploadForm').reset();
+
+    // Hide the submission message
+    document.getElementById('submissionMessage').style.display = 'none';
+
+    // Show the form again
+    document.querySelector('.upload-form-container').style.display = 'block';
+
+    // Scroll to the form so the user can see it
+    document.querySelector('.upload-form-container').scrollIntoView({ behavior: 'smooth' });
 });
