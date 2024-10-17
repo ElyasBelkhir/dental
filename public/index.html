@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
@@ -36,11 +37,15 @@
                     </div>
                     <div class="form-field">
                         <label for="pdfRxForm">RX Forms:</label>
-                        <input type="file" id="pdfRxForm" name="pdfRxForm" accept=".pdf" multiple />
+                        <input type="file" id="pdfRxForm" name="pdfRxForm" accept=".pdf" multiple style="display: none;" />
+                        <button type="button" id="pdfRxFormButton">Choose PDF Files</button>
+                        <div id="pdfRxFormList" class="file-list"></div>
                     </div>
                     <div class="form-field">
                         <label for="stlFile">Dental Case Files:</label>
-                        <input type="file" id="stlFile" name="stlFile" accept=".stl" multiple />
+                        <input type="file" id="stlFile" name="stlFile" accept=".stl" multiple style="display: none;" />
+                        <button type="button" id="stlFileButton">Choose STL Files</button>
+                        <div id="stlFileList" class="file-list"></div>
                     </div>
                     <div class="form-field">
                         <label for="note">Note:</label>
