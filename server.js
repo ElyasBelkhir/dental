@@ -14,7 +14,7 @@ app.use(express.static('public'));
 app.use(cors({
   origin: ['https://www.creationdentallab.com/', 'https://www.app.creationdentallab.com/'], // Replace with your actual Wix domain(s)
   methods: ['GET', 'POST'], // Specify the HTTP methods you want to allow
-  credentials: true // Enable cookies and other credentials if needed
+  credentials: false // Enable cookies and other credentials if needed
 }));
 
 // Initialize Google Cloud Storage client
