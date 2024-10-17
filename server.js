@@ -12,7 +12,7 @@ app.use(express.static('public'));
 
 // Enable CORS for all routes (you can restrict origins if needed)
 app.use(cors({
-  origin: ['https://www.creationdentallab.com/', 'https://www.app.creationdentallab.com/'], // Replace with your actual Wix domain(s)
+  origin: ['https://www.creationdentallab.com/', 'https://app.creationdentallab.com/'], // Replace with your actual Wix domain(s)
   methods: ['GET', 'POST'], // Specify the HTTP methods you want to allow
   credentials: false // Enable cookies and other credentials if needed
 }));
